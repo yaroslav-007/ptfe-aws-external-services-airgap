@@ -3,43 +3,45 @@
     "AWS_ACCESS_KEY_ID": "<enter aws access key>",
     "AWS_SECRET_ACCESS_KEY": "<enter aws secret key>"
   },
- 
- "builders": [{
-    "type": "amazon-ebs",
-    "access_key": "{{user `AWS_ACCESS_KEY_ID`}}",
-    "secret_key": "{{user `AWS_SECRET_ACCESS_KEY`}}",
-    "region": "eu-west-2",
-
-    "source_ami_filter": {
-      "filters": {
-      "virtualization-type": "hvm",
-      "name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
-      "root-device-type": "ebs"
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "access_key": "{{user `AWS_ACCESS_KEY_ID`}}",
+      "secret_key": "{{user `AWS_SECRET_ACCESS_KEY`}}",
+      "region": "eu-west-2",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
+          "root-device-type": "ebs"
+        },
+        "owners": [
+          "099720109477"
+        ],
+        "most_recent": true
       },
-      "owners": ["099720109477"],
-      "most_recent": true
-    },
-    "instance_type": "t2.micro",
-    "ssh_username": "ubuntu",
-    "ami_name": "ptfe-{{timestamp}}",
-
-    "ami_block_device_mappings" : [{
-      "device_name": "/dev/xvda",
-      "volume_size": 42,
-      "volume_type": "gp2",
-      "delete_on_termination": true
-  }] 
-  }],
-
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "ptfe-{{timestamp}}",
+      "ami_block_device_mappings": [
+        {
+          "device_name": "/dev/xvda",
+          "volume_size": 42,
+          "volume_type": "gp2",
+          "delete_on_termination": true
+        }
+      ]
+    }
+  ],
   "provisioners": [
     {
       "destination": "/home/ubuntu",
       "source": "../ptfe-ec2",
       "type": "file"
     },
-    
     {
       "type": "shell",
+      "execute_command": "sudo -S bash {{.Path}}",
       "script": "scripts/setup.sh"
     }
   ]
