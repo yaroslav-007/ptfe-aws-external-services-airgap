@@ -22,7 +22,7 @@ https://www.terraform.io/downloads.html
 - Install Packer CLI:
 Download and install accordingly to your OS as described here:
 https://packer.io/downloads.html
-- Have a account in AWS and populate the access amd secret key in variables **aws_access_key** and **aws_secret_key** in variables.tf
+- Have a account in AWS and populate the access and secret key in variables **aws_access_key** and **aws_secret_key** in variables.tf
 - You have to have a domain and create zone in aws (https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html) and populate it id in variable **r53-zone-id** in variables.tf
 - Obtain a license for TFE and located in ./ptfe-ec2/license-file.rli
 - Download Airgap bundle for the install and save in ./ptfe-ec2/Terraform.airgap
@@ -65,5 +65,5 @@ cd ../ptfe
 terraform apply -auto-approve
 ```
 
-When terraform finished, open a browser for location `https://<the domain name you aer using>:8800/` and PTFE console should be available.
+When terraform finished, open a browser for location `https://<the domain name you are using>:8800/` and PTFE console should be available.
 
