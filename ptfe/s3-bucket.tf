@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "ptfe-bucket" {
   acl    = "private"
   region = "eu-west-2"
   tags = {
-    Name        = "ptfe-bucket"
+    Name = "ptfe-bucket"
   }
 }
 

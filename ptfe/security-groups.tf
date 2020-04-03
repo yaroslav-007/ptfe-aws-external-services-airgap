@@ -59,7 +59,7 @@ resource "aws_security_group" "ptfe-db-sg" {
     cidr_blocks = ["10.0.0.0/24"]
   }
 
- egress {
+  egress {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"

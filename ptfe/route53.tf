@@ -16,4 +16,3 @@ resource "aws_route53_record" "db" {
   ttl     = "60"
   records = ["${aws_db_instance.ptfe-db.address}"]
 }
-
