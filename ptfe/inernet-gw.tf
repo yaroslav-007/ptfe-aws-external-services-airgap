@@ -5,7 +5,6 @@ resource "aws_internet_gateway" "ptfe-vpc-internet-gw" {
   tags = {
     Name = "ptfe-vpc-internet-gw"
   }
-
 }
 
 # Create route table and route for Internet  for the PTFE instance (private) subnet
