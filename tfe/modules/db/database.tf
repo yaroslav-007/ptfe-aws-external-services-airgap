@@ -1,5 +1,5 @@
-###Create  DB instance fot PTFE
-resource "aws_db_instance" "ptfe-db" {
+###Create  DB instance fot tfe
+resource "aws_db_instance" "tfe-db" {
   allocated_storage      = 5
   storage_type           = "gp2"
   engine                 = "postgres"
@@ -10,18 +10,17 @@ resource "aws_db_instance" "ptfe-db" {
   password               = var.db_password
   publicly_accessible    = false
   deletion_protection    = false
-  availability_zone      = "eu-west-2a"
+  availability_zone      = var.aws_availability_zone
   skip_final_snapshot    = true
   db_subnet_group_name   = aws_db_subnet_group.db-subnet-group.id
-  vpc_security_group_ids = [aws_security_group.ptfe-db-sg.id]
+  vpc_security_group_ids = [aws_security_group.tfe-db-sg.id]
 }
 
 ###Create DB sunet groups
 resource "aws_db_subnet_group" "db-subnet-group" {
   name       = "db-subnet-group"
-  subnet_ids = [aws_subnet.ptfe-vpc-db1-subnet.id, aws_subnet.ptfe-vpc-db2-subnet.id]
-
+  subnet_ids = [aws_subnet.tfe-vpc-db1-subnet.id, aws_subnet.tfe-vpc-db2-subnet.id]
   tags = {
-    Name = "PTFE DB subnet group"
+    Name = var.aws_db_subnet_group_tag_name
   }
 }
