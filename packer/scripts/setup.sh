@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-set -x
-
 apt-get update
 apt-get upgrade -y
-apt-get install ctop htop -y
 
-apt install /home/ubuntu/ptfe-ec2/*.deb -y
+apt-get install -y ctop htop
 
-mkdir /home/ubuntu/ptfe-ec2/replicated
-tar xzf /home/ubuntu/ptfe-ec2/replicated.tar.gz -C /home/ubuntu/ptfe-ec2/replicated
-cp /home/ubuntu/ptfe-ec2/replicated.conf /etc/replicated.conf
+apt install -y /home/ubuntu/assets/*.deb
+
+mkdir -p /home/ubuntu/assets/replicated/
+tar xzf /home/ubuntu/assets/replicated.tar.gz -C /home/ubuntu/assets/replicated/
+
+cp /home/ubuntu/assets/replicated.conf /etc/replicated.conf

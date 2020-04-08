@@ -1,8 +1,8 @@
-# Create security group for VPC that allows ssh, http, https and ptfe dashboard port 8800 for requests/replys inbound traffic 
+# Create security group for VPC that allows ssh, http, https and tfe dashboard port 8800 for requests/replys inbound traffic 
 resource "aws_security_group" "ec2_sg" {
   name        = "ec2_sg"
   description = "Allow traffic needed for ssh and icmp echo request/reply"
-  vpc_id      = aws_vpc.ptfe-vpc.id
+  vpc_id      = aws_vpc.tfe-vpc.id
 
   ingress {
     from_port   = 22
@@ -45,10 +45,10 @@ resource "aws_security_group" "ec2_sg" {
 }
 
 # Create security group for VPC that PostgreSQL traffic 
-resource "aws_security_group" "ptfe-db-sg" {
-  name        = "ptfe-db-sg"
+resource "aws_security_group" "tfe-db-sg" {
+  name        = "tfe-db-sg"
   description = "Allow traffic needed for ssh and icmp echo request/reply"
-  vpc_id      = aws_vpc.ptfe-vpc.id
+  vpc_id      = aws_vpc.tfe-vpc.id
 
 
   // PostgreSQL port

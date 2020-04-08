@@ -1,10 +1,10 @@
-###Setting up subdomain for the ptfe project
-resource "aws_route53_record" "ptfe" {
+###Setting up subdomain for the tfe project
+resource "aws_route53_record" "tfe" {
   zone_id = var.r53-zone-id
   name    = var.domain-name
   type    = "A"
   ttl     = "60"
-  records = ["${aws_eip.ptfe-eip.public_ip}"]
+  records = [aws_eip.tfe-eip.public_ip]
 }
 
 
@@ -14,5 +14,5 @@ resource "aws_route53_record" "db" {
   name    = var.db-domain-name
   type    = "CNAME"
   ttl     = "60"
-  records = ["${aws_db_instance.ptfe-db.address}"]
+  records = [aws_db_instance.tfe-db.address]
 }
