@@ -40,7 +40,7 @@ resource "aws_security_group" "ec2_sg" {
   }
 
   tags = {
-    Name = "PTFE-ec2"
+    Name = "tfe-ec2"
   }
 }
 
@@ -66,6 +66,6 @@ resource "aws_security_group" "tfe-db-sg" {
     cidr_blocks = ["10.0.0.0/24"]
   }
   tags = {
-    Name = "PTFE-postgress"
+    Name = "tfe-postgress"
   }
 }
